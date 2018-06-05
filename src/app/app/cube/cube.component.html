@@ -1,0 +1,29 @@
+<div class="container">
+    <canvas class="screen" #canvas>
+    </canvas>
+    <div class="control-panel">
+        <div>
+            <button mat-mini-fab (click)="start()" color="primary" [disabled]="isFreeze">
+                <mat-icon aria-label="Play">play_arrow</mat-icon>
+            </button>
+            <button *ngIf="cube != null" mat-icon-button (click)="autoSolve()" color="accent" [disabled]="isFreeze || cube.isSolved()">
+                <mat-icon aria-label="Auto Solve">vpn_key</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button mat-icon-button (click)="resetCamera(1)">
+                <mat-icon aria-label="Reset">refresh</mat-icon>
+            </button>
+            <button mat-icon-button (click)="rotateCamera(-1)">
+                <mat-icon aria-label="Rotate left">keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="rotateCamera(1)">
+                <mat-icon aria-label="Rotate right">keyboard_arrow_right</mat-icon>
+            </button>
+            <button mat-icon-button (click)="switchCamera()">
+                <mat-icon *ngIf="cameraPosition[1] === 1" aria-label="Top look">keyboard_arrow_up</mat-icon>
+                <mat-icon *ngIf="cameraPosition[1] === 0" aria-label="Bottom look">keyboard_arrow_down</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
