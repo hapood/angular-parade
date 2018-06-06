@@ -1,0 +1,91 @@
+{
+  "configVersion": 1,
+  "index": "/angular-parade/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/angular-parade/favicon.ico",
+        "/angular-parade/index.html",
+        "/angular-parade/main.4ce009023ec03385b342.js",
+        "/angular-parade/polyfills.512753c59a7ed49971f8.js",
+        "/angular-parade/runtime.129d2b52ac14698d1658.js",
+        "/angular-parade/styles.1c8618ca0189dd90b95a.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/angular-parade/assets/Cube.babylon",
+        "/angular-parade/assets/blue.png",
+        "/angular-parade/assets/cubeSprite.png",
+        "/angular-parade/assets/fonts/gentilis_bold.typeface.json",
+        "/angular-parade/assets/fonts/helvetiker_regular.typeface.json",
+        "/angular-parade/assets/green.png",
+        "/angular-parade/assets/icons/icon-128x128.png",
+        "/angular-parade/assets/icons/icon-144x144.png",
+        "/angular-parade/assets/icons/icon-152x152.png",
+        "/angular-parade/assets/icons/icon-192x192.png",
+        "/angular-parade/assets/icons/icon-384x384.png",
+        "/angular-parade/assets/icons/icon-512x512.png",
+        "/angular-parade/assets/icons/icon-72x72.png",
+        "/angular-parade/assets/icons/icon-96x96.png",
+        "/angular-parade/assets/orange.png",
+        "/angular-parade/assets/red.png",
+        "/angular-parade/assets/white.png",
+        "/angular-parade/assets/yellow.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/angular-parade/assets/Cube.babylon": "e525de1ef6eb1c189e4f2132450deb618bbcfb54",
+    "/angular-parade/assets/blue.png": "0388a5954e68b8941c6dd9ba06c26eb2eaccd697",
+    "/angular-parade/assets/cubeSprite.png": "9cef11222128fda827542c43d424a4999e596f91",
+    "/angular-parade/assets/fonts/gentilis_bold.typeface.json": "d609123c47ece3bf23d7e9372ba3116de0a72976",
+    "/angular-parade/assets/fonts/helvetiker_regular.typeface.json": "f582b6146f2417abffe1a243d11ac792fc538099",
+    "/angular-parade/assets/green.png": "87051bb3075750b6de1bc1893384b016f1cf67d1",
+    "/angular-parade/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/angular-parade/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/angular-parade/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/angular-parade/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/angular-parade/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/angular-parade/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/angular-parade/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/angular-parade/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/angular-parade/assets/orange.png": "07b2f272b74391b9297e407c2e839336b61a25a9",
+    "/angular-parade/assets/red.png": "9670071fc1caf78af828e357e77decb62311d0df",
+    "/angular-parade/assets/white.png": "3c226ac4fd95378a666d278e329c570748ed1a80",
+    "/angular-parade/assets/yellow.png": "6b4bcff747d2a4893a4f523baeacc052d0573ac5",
+    "/angular-parade/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/angular-parade/index.html": "2968dcb270aff978b7ca282738dc6aae3309e814",
+    "/angular-parade/main.4ce009023ec03385b342.js": "9ddeeeb5e34c4626809b3ed5e38b55247aa4e499",
+    "/angular-parade/polyfills.512753c59a7ed49971f8.js": "b804bc62b2bf1391f633fcbf466627515a58e861",
+    "/angular-parade/runtime.129d2b52ac14698d1658.js": "23d8c12ace6a3c934f32aee62ccde330d1a80677",
+    "/angular-parade/styles.1c8618ca0189dd90b95a.css": "cc070cb2b93fcaaa9f1f743f33cc1d5173caf6da"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*\\.[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^\\/]*__[^\\/]*\\/.*$"
+    }
+  ]
+}
