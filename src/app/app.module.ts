@@ -10,6 +10,8 @@ import {
 import { AppComponent } from "./app.component";
 import { CubeComponent } from "./app/cube/cube.component";
 import { CubeInfoDialog } from "./app/cube/cube-info-dialog.component";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent, CubeComponent, CubeInfoDialog],
   imports: [
@@ -17,7 +19,8 @@ import { CubeInfoDialog } from "./app/cube/cube-info-dialog.component";
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [CubeInfoDialog],
   providers: [],

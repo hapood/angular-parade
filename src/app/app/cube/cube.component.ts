@@ -196,7 +196,7 @@ export class CubeComponent implements AfterViewInit {
               title: "恭喜你成功解开魔方",
               content: "是否重新开始？",
               no: "关闭",
-              yes: "继续游戏"
+              yes: "重新开始"
             }
           });
           dialogRef.afterClosed().subscribe((isRestart: boolean) => {

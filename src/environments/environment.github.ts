@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  deployUrl: ""
+  deployUrl: "/angular-parade"
 };

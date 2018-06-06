@@ -17,6 +17,7 @@ import {
 import { normalizeAxisValue, easingFunction, countDownCB } from "./helpers";
 const pivotAt = new BABYLON.Vector3(0, 0, 0);
 import { CubeSidesEnum, AxisEnum } from "./enums";
+import { environment } from "~/environments/environment";
 
 const Cubejs = require("cubejs/lib/cube");
 require("cubejs/lib/solve");
@@ -158,7 +159,10 @@ function calcFaceUV(x: number, y: number, z: number, orderNum: number) {
 
 function createMats(scene: Scene) {
   let material = new StandardMaterial("cubeSprite", scene);
-  material.diffuseTexture = new Texture(`/assets/cubeSprite.png`, scene);
+  material.diffuseTexture = new Texture(
+    `${environment.deployUrl}/assets/cubeSprite.png`,
+    scene
+  );
   return material;
 }
 
