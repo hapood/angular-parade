@@ -42,9 +42,9 @@ const cameraAlphas = [
   alphaOffset,
   Math.PI / 2 + alphaOffset,
   Math.PI + alphaOffset,
-  Math.PI * 3 / 2 + alphaOffset
+  (Math.PI * 3) / 2 + alphaOffset
 ];
-const cameraBetas = [Math.PI / 3, Math.PI * 2 / 3];
+const cameraBetas = [Math.PI / 3, (Math.PI * 2) / 3];
 
 function translateCameraPosition([alphaIndex, betaIndex]: [number, number]): [
   number,
@@ -193,10 +193,10 @@ export class CubeComponent implements AfterViewInit {
           let dialogRef = this.dialog.open(CubeInfoDialog, {
             width: "250px",
             data: {
-              title: "恭喜你成功解开魔方",
-              content: "是否重新开始？",
-              no: "关闭",
-              yes: "重新开始"
+              title: "Congratulations on your success unlock Cube.",
+              content: "Start a new game?",
+              no: "Close",
+              yes: "Restart"
             }
           });
           dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -249,7 +249,7 @@ export class CubeComponent implements AfterViewInit {
     if (this.cameraPosition[0] > 3) {
       this.cameraPosition[0] %= 4;
     } else if (this.cameraPosition[0] < 0) {
-      this.cameraPosition[0] = this.cameraPosition[0] % 3 + 4;
+      this.cameraPosition[0] = (this.cameraPosition[0] % 3) + 4;
     }
     this.cameraAnimationGroup = rotateCameraAnimationGroup(
       translateCameraPosition(this.cameraPosition),
@@ -293,7 +293,7 @@ export class CubeComponent implements AfterViewInit {
     this.engine.resize();
   }
 
-  private pickingCb = (event: MouseEvent) => {
+  private pickingCB = (event: MouseEvent) => {
     if (this.isFreeze) return;
     let pickResult = this.scene.pick(event.layerX, event.layerY, mesh => {
       if (mesh == this.directionPlane && mesh.isPickable === true) {
@@ -328,8 +328,8 @@ export class CubeComponent implements AfterViewInit {
       pickStartTime: new Date().getTime()
     };
     if (this.directionPlane) {
-      this.directionPlane = null;
       this.directionPlane.dispose();
+      this.directionPlane = null;
     }
     let pickResult = this.scene.pick(event.layerX, event.layerY);
     if (!pickResult.hit) return;
@@ -371,7 +371,7 @@ export class CubeComponent implements AfterViewInit {
   initController() {
     this.canvas.addEventListener("pointerdown", this.pickStartCB);
     this.canvas.addEventListener("pointerup", this.pickStopCB);
-    this.canvas.addEventListener("pointermove", this.pickingCb);
+    this.canvas.addEventListener("pointermove", this.pickingCB);
   }
 
   start() {
@@ -379,10 +379,10 @@ export class CubeComponent implements AfterViewInit {
       let dialogRef = this.dialog.open(CubeInfoDialog, {
         width: "250px",
         data: {
-          title: "重新开始",
-          content: "重新开始游戏会丢失当前进度，是否确认",
-          no: "继续游戏",
-          yes: "重新开始"
+          title: "Restart",
+          content: "Caution: Progress of your playing will lost if restart",
+          no: "Continue",
+          yes: "Restart"
         }
       });
       dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -406,10 +406,10 @@ export class CubeComponent implements AfterViewInit {
     let dialogRef = this.dialog.open(CubeInfoDialog, {
       width: "250px",
       data: {
-        title: "参考答案",
+        title: "Answer",
         content: this.cube.getAnswer(),
-        no: "关闭",
-        yes: "自动还原"
+        no: "Close",
+        yes: "Auto Restore"
       }
     });
     dialogRef.afterClosed().subscribe((isRestart: boolean) => {
