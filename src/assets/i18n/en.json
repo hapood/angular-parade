@@ -1,0 +1,13 @@
+{
+  "CUBE_INF_DLG": {
+    "ANSWER": "Answer",
+    "CLOSE": "Close",
+    "AUTO_RESTORE": "Auto Restore",
+    "RESTART": "Restart",
+    "CONTINUE": "Continue",
+    "RESTART_CAUTION":
+      "Caution: Progress of your playing will lost if restart.",
+    "NEW_START": "Start a new game?",
+    "CHEER_UNLOCK": "Congratulations on your success unlock Cube."
+  }
+}

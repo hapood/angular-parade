@@ -7,6 +7,7 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 import { MatDialog } from "@angular/material";
+import { TranslateService } from "@ngx-translate/core";
 import { CubeInfoDialog } from "./cube-info-dialog.component";
 import {
   Animation,
@@ -25,7 +26,7 @@ import {
 } from "babylonjs";
 import Cube from "./lib/Cube";
 import { easingFunction } from "./lib/helpers";
-import { CubeSidesEnum, AxisEnum } from "./lib/enums";
+import { AxisEnum } from "./lib/enums";
 import showAxes from "./lib/showAxes";
 import {
   getPoints,
@@ -34,7 +35,6 @@ import {
   directionToRotatePieces
 } from "./lib/helpers";
 const ORDER_NUMBER = 3;
-const CAMERA_DISTANCE = 5;
 export const DIRECTION_PLANE_WIDTH = 50;
 
 const alphaOffset = Math.PI / 4;
@@ -128,7 +128,11 @@ export class CubeComponent implements AfterViewInit {
   private cameraAnimationGroup: AnimationGroup;
   public cameraPosition: [number, number] = [0, 0];
 
-  constructor(private dialog: MatDialog, private cd: ChangeDetectorRef) {}
+  constructor(
+    private dialog: MatDialog,
+    private cd: ChangeDetectorRef,
+    private translate: TranslateService
+  ) {}
 
   private get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
@@ -191,12 +195,12 @@ export class CubeComponent implements AfterViewInit {
         this.isFreeze = false;
         if (this.cube.isSolved()) {
           let dialogRef = this.dialog.open(CubeInfoDialog, {
-            width: "250px",
+            width: "350px",
             data: {
-              title: "恭喜你成功解开魔方",
-              content: "是否重新开始？",
-              no: "关闭",
-              yes: "重新开始"
+              title: "CUBE_INF_DLG.CHEER_UNLOCK",
+              content: "CUBE_INF_DLG.NEW_START",
+              no: "CUBE_INF_DLG.CLOSE",
+              yes: "CUBE_INF_DLG.RESTART"
             }
           });
           dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -293,9 +297,9 @@ export class CubeComponent implements AfterViewInit {
     this.engine.resize();
   }
 
-  private pickingCb = (event: MouseEvent) => {
+  private pickingCB = (event: MouseEvent) => {
     if (this.isFreeze) return;
-    let pickResult = this.scene.pick(event.layerX, event.layerY, mesh => {
+    let pickResult = this.scene.pick(event.clientX, event.clientY, mesh => {
       if (mesh == this.directionPlane && mesh.isPickable === true) {
         return true;
       }
@@ -328,10 +332,10 @@ export class CubeComponent implements AfterViewInit {
       pickStartTime: new Date().getTime()
     };
     if (this.directionPlane) {
-      this.directionPlane = null;
       this.directionPlane.dispose();
+      this.directionPlane = null;
     }
-    let pickResult = this.scene.pick(event.layerX, event.layerY);
+    let pickResult = this.scene.pick(event.clientX, event.clientY);
     if (!pickResult.hit) return;
     let indices = pickResult.pickedMesh.getIndices();
     let index0 = indices[pickResult.faceId * 3];
@@ -371,18 +375,18 @@ export class CubeComponent implements AfterViewInit {
   initController() {
     this.canvas.addEventListener("pointerdown", this.pickStartCB);
     this.canvas.addEventListener("pointerup", this.pickStopCB);
-    this.canvas.addEventListener("pointermove", this.pickingCb);
+    this.canvas.addEventListener("pointermove", this.pickingCB);
   }
 
   start() {
     if (!this.cube.isSolved()) {
       let dialogRef = this.dialog.open(CubeInfoDialog, {
-        width: "250px",
+        width: "350px",
         data: {
-          title: "重新开始",
-          content: "重新开始游戏会丢失当前进度，是否确认",
-          no: "继续游戏",
-          yes: "重新开始"
+          title: "CUBE_INF_DLG.RESTART",
+          content: "CUBE_INF_DLG.RESTART_CAUTION",
+          no: "CUBE_INF_DLG.CONTINUE",
+          yes: "CUBE_INF_DLG.RESTART"
         }
       });
       dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -404,12 +408,12 @@ export class CubeComponent implements AfterViewInit {
 
   autoSolve() {
     let dialogRef = this.dialog.open(CubeInfoDialog, {
-      width: "250px",
+      width: "350px",
       data: {
-        title: "参考答案",
+        title: "CUBE_INF_DLG.ANSWER",
         content: this.cube.getAnswer(),
-        no: "关闭",
-        yes: "自动还原"
+        no: "CUBE_INF_DLG.CLOSE",
+        yes: "CUBE_INF_DLG.AUTO_RESTORE"
       }
     });
     dialogRef.afterClosed().subscribe((isRestart: boolean) => {

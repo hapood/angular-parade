@@ -19,6 +19,7 @@ const pivotAt = new BABYLON.Vector3(0, 0, 0);
 import { CubeSidesEnum, AxisEnum } from "./enums";
 import { environment } from "~/environments/environment";
 
+declare const require:any;
 const Cubejs = require("cubejs/lib/cube");
 require("cubejs/lib/solve");
 

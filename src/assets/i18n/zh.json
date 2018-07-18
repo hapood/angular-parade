@@ -1,0 +1,12 @@
+{
+  "CUBE_INF_DLG": {
+    "ANSWER": "参考答案",
+    "CLOSE": "关闭",
+    "AUTO_RESTORE": "自动还原",
+    "RESTART": "重新开始",
+    "CONTINUE": "继续游戏",
+    "RESTART_CAUTION": "注意，重新开始游戏会丢失当前进度。",
+    "NEW_START": "开始新的游戏？",
+    "CHEER_UNLOCK": "恭喜你成功解开魔方。"
+  }
+}
