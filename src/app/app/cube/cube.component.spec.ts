@@ -1,24 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CubeComponent } from './cube.component';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { CubeComponent } from "./cube.component";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatIconModule
+} from "@angular/material";
 
-describe('Cube2Component', () => {
+describe("CubeComponent", () => {
   let component: CubeComponent;
   let fixture: ComponentFixture<CubeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CubeComponent ]
-    })
-    .compileComponents();
+      imports: [
+        NoopAnimationsModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule
+      ],
+      declarations: [CubeComponent]
+    }).compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CubeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it("should create", () => {
+    const fixture = TestBed.createComponent(CubeComponent);
+    const cubeComponent = fixture.debugElement.componentInstance;
+    expect(cubeComponent).toBeTruthy();
   });
 });

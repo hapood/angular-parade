@@ -6,7 +6,7 @@ import {
   HostListener,
   ChangeDetectorRef
 } from "@angular/core";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog } from "@angular/material";
 import { CubeInfoDialog } from "./cube-info-dialog.component";
 import {
   Animation,
@@ -42,9 +42,9 @@ const cameraAlphas = [
   alphaOffset,
   Math.PI / 2 + alphaOffset,
   Math.PI + alphaOffset,
-  Math.PI * 3 / 2 + alphaOffset
+  (Math.PI * 3) / 2 + alphaOffset
 ];
-const cameraBetas = [Math.PI / 3, Math.PI * 2 / 3];
+const cameraBetas = [Math.PI / 3, (Math.PI * 2) / 3];
 
 function translateCameraPosition([alphaIndex, betaIndex]: [number, number]): [
   number,
@@ -249,7 +249,7 @@ export class CubeComponent implements AfterViewInit {
     if (this.cameraPosition[0] > 3) {
       this.cameraPosition[0] %= 4;
     } else if (this.cameraPosition[0] < 0) {
-      this.cameraPosition[0] = this.cameraPosition[0] % 3 + 4;
+      this.cameraPosition[0] = (this.cameraPosition[0] % 3) + 4;
     }
     this.cameraAnimationGroup = rotateCameraAnimationGroup(
       translateCameraPosition(this.cameraPosition),
