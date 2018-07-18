@@ -6,7 +6,8 @@ import {
   HostListener,
   ChangeDetectorRef
 } from "@angular/core";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog } from "@angular/material";
+import { TranslateService } from "@ngx-translate/core";
 import { CubeInfoDialog } from "./cube-info-dialog.component";
 import {
   Animation,
@@ -25,7 +26,7 @@ import {
 } from "babylonjs";
 import Cube from "./lib/Cube";
 import { easingFunction } from "./lib/helpers";
-import { CubeSidesEnum, AxisEnum } from "./lib/enums";
+import { AxisEnum } from "./lib/enums";
 import showAxes from "./lib/showAxes";
 import {
   getPoints,
@@ -34,7 +35,6 @@ import {
   directionToRotatePieces
 } from "./lib/helpers";
 const ORDER_NUMBER = 3;
-const CAMERA_DISTANCE = 5;
 export const DIRECTION_PLANE_WIDTH = 50;
 
 const alphaOffset = Math.PI / 4;
@@ -128,7 +128,11 @@ export class CubeComponent implements AfterViewInit {
   private cameraAnimationGroup: AnimationGroup;
   public cameraPosition: [number, number] = [0, 0];
 
-  constructor(private dialog: MatDialog, private cd: ChangeDetectorRef) {}
+  constructor(
+    private dialog: MatDialog,
+    private cd: ChangeDetectorRef,
+    private translate: TranslateService
+  ) {}
 
   private get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
@@ -191,12 +195,12 @@ export class CubeComponent implements AfterViewInit {
         this.isFreeze = false;
         if (this.cube.isSolved()) {
           let dialogRef = this.dialog.open(CubeInfoDialog, {
-            width: "250px",
+            width: "350px",
             data: {
-              title: "Congratulations on your success unlock Cube.",
-              content: "Start a new game?",
-              no: "Close",
-              yes: "Restart"
+              title: "CUBE_INF_DLG.CHEER_UNLOCK",
+              content: "CUBE_INF_DLG.NEW_START",
+              no: "CUBE_INF_DLG.CLOSE",
+              yes: "CUBE_INF_DLG.RESTART"
             }
           });
           dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -295,7 +299,7 @@ export class CubeComponent implements AfterViewInit {
 
   private pickingCB = (event: MouseEvent) => {
     if (this.isFreeze) return;
-    let pickResult = this.scene.pick(event.layerX, event.layerY, mesh => {
+    let pickResult = this.scene.pick(event.clientX, event.clientY, mesh => {
       if (mesh == this.directionPlane && mesh.isPickable === true) {
         return true;
       }
@@ -331,7 +335,7 @@ export class CubeComponent implements AfterViewInit {
       this.directionPlane.dispose();
       this.directionPlane = null;
     }
-    let pickResult = this.scene.pick(event.layerX, event.layerY);
+    let pickResult = this.scene.pick(event.clientX, event.clientY);
     if (!pickResult.hit) return;
     let indices = pickResult.pickedMesh.getIndices();
     let index0 = indices[pickResult.faceId * 3];
@@ -377,12 +381,12 @@ export class CubeComponent implements AfterViewInit {
   start() {
     if (!this.cube.isSolved()) {
       let dialogRef = this.dialog.open(CubeInfoDialog, {
-        width: "250px",
+        width: "350px",
         data: {
-          title: "Restart",
-          content: "Caution: Progress of your playing will lost if restart",
-          no: "Continue",
-          yes: "Restart"
+          title: "CUBE_INF_DLG.RESTART",
+          content: "CUBE_INF_DLG.RESTART_CAUTION",
+          no: "CUBE_INF_DLG.CONTINUE",
+          yes: "CUBE_INF_DLG.RESTART"
         }
       });
       dialogRef.afterClosed().subscribe((isRestart: boolean) => {
@@ -404,12 +408,12 @@ export class CubeComponent implements AfterViewInit {
 
   autoSolve() {
     let dialogRef = this.dialog.open(CubeInfoDialog, {
-      width: "250px",
+      width: "350px",
       data: {
-        title: "Answer",
+        title: "CUBE_INF_DLG.ANSWER",
         content: this.cube.getAnswer(),
-        no: "Close",
-        yes: "Auto Restore"
+        no: "CUBE_INF_DLG.CLOSE",
+        yes: "CUBE_INF_DLG.AUTO_RESTORE"
       }
     });
     dialogRef.afterClosed().subscribe((isRestart: boolean) => {
